@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Terminal Acadêmico</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Gerenciador de Tarefas Acadêmicas</h1>
+  </header>
+
+  <main>
+
+    <!-- Região de feedback acessível -->
+    <div
+      id="status-aplicacao"
+      role="status"
+      aria-live="polite"
+    ></div>
+
+    <!-- Busca e filtros -->
+    <section
+      id="secao-filtros"
+      aria-labelledby="titulo-filtros"
+    >
+
+      <h2 id="titulo-filtros">
+        Busca e Filtros
+      </h2>
+
+      <form id="form-filtros">
+
+        <div>
+          <label for="campo-busca">
+            Buscar por título da tarefa:
+          </label>
+
+          <input
+            type="search"
+            id="campo-busca"
+            name="busca"
+            placeholder="Digite o título..."
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="filtros">
+
+          <!-- Status -->
+          <fieldset>
+
+            <legend>Filtrar por Status</legend>
+
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value="todos"
+                checked
+              >
+              Todos
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value="a-fazer"
+              >
+              A Fazer
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value="em-andamento"
+              >
+              Em Andamento
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value="em-revisao"
+              >
+              Em Revisão
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value="concluida"
+              >
+              Concluída
+            </label>
+
+          </fieldset>
+
+          <!-- Prioridade -->
+          <fieldset>
+
+            <legend>Filtrar por Prioridade</legend>
+
+            <label>
+              <input
+                type="radio"
+                name="prioridade"
+                value="todas"
+                checked
+              >
+              Todas
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="prioridade"
+                value="baixa"
+              >
+              Baixa
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="prioridade"
+                value="media"
+              >
+              Média
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="prioridade"
+                value="alta"
+              >
+              Alta
+            </label>
+
+          </fieldset>
+
+        </div>
+
+        <!-- Ordenação -->
+        <div class="ordenacao">
+
+          <label for="campo-ordenacao">
+            Ordenar por prazo:
+          </label>
+
+          <select
+            id="campo-ordenacao"
+            name="ordenacao"
+          >
+            <option value="nenhuma">
+              Sem ordenação
+            </option>
+
+            <option value="prazo-crescente">
+              Prazo: mais próximo primeiro
+            </option>
+
+            <option value="prazo-decrescente">
+              Prazo: mais distante primeiro
+            </option>
+          </select>
+
+        </div>
+
+        <!-- Botões -->
+        <div class="acoes-filtros">
+
+          <button type="submit">
+            Executar filtro
+          </button>
+
+          <button
+            type="button"
+            id="botao-limpar"
+          >
+            Limpar filtros
+          </button>
+
+        </div>
+
+      </form>
+
+    </section>
+
+
+    <!-- Quadro de tarefas -->
+    <section
+      id="secao-quadro"
+      aria-labelledby="titulo-quadro"
+    >
+
+      <h2 id="titulo-quadro">
+        Quadro de Tarefas
+      </h2>
+
+      <div class="quadro">
+
+        <!-- A Fazer -->
+        <section aria-labelledby="status-afazer-heading">
+
+          <h3 id="status-afazer-heading">
+            A Fazer
+          </h3>
+
+          <ul></ul>
+
+        </section>
+
+
+        <!-- Em Andamento -->
+        <section aria-labelledby="status-andamento-heading">
+
+          <h3 id="status-andamento-heading">
+            Em Andamento
+          </h3>
+
+          <ul></ul>
+
+        </section>
+
+
+        <!-- Em Revisão -->
+        <section aria-labelledby="status-revisao-heading">
+
+          <h3 id="status-revisao-heading">
+            Em Revisão
+          </h3>
+
+          <ul></ul>
+
+        </section>
+
+
+        <!-- Concluída -->
+        <section aria-labelledby="status-concluida-heading">
+
+          <h3 id="status-concluida-heading">
+            Concluída
+          </h3>
+
+          <ul></ul>
+
+        </section>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script
+    type="module"
+    src="js/main.js"
+  ></script>
+
+</body>
+
+</html>

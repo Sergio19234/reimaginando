@@ -1,0 +1,634 @@
+:root {
+
+  /* Cores principais */
+  --terminal-bg: #050807;
+  --terminal-surface: #0b120e;
+  --terminal-surface-2: #101a13;
+
+  --terminal-green: #39ff88;
+  --terminal-green-dark: #20b85e;
+  --terminal-green-soft: #8affb7;
+
+  --terminal-text: #d8ffe5;
+  --terminal-muted: #78a887;
+  --terminal-border: #1d5932;
+
+  /* Cores dos status */
+  --status-a-fazer: #39ff88;
+  --status-andamento: #ffe66d;
+  --status-revisao: #66b3ff;
+  --status-concluida: #39ff88;
+
+  /* Espaçamento */
+  --espaco-1: 0.25rem;
+  --espaco-2: 0.5rem;
+  --espaco-3: 0.75rem;
+  --espaco-4: 1rem;
+  --espaco-5: 1.5rem;
+  --espaco-6: 2rem;
+
+  /* Outros */
+  --raio: 0.4rem;
+  --largura-maxima: 1400px;
+}
+
+
+/* ================================
+   CONFIGURAÇÃO GERAL
+   ================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #0c2114 0%,
+      var(--terminal-bg) 45%
+    );
+
+  color: var(--terminal-text);
+
+  font-family:
+    "Courier New",
+    Courier,
+    monospace;
+
+  line-height: 1.5;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+
+/* ================================
+   CABEÇALHO
+   ================================ */
+
+header {
+  width: min(100% - 2rem, var(--largura-maxima));
+
+  margin: 1rem auto 0;
+
+  padding: var(--espaco-5);
+
+  border: 1px solid var(--terminal-border);
+
+  border-radius: var(--raio);
+
+  background-color: var(--terminal-surface);
+
+  box-shadow:
+    0 0 25px rgba(57, 255, 136, 0.08);
+}
+
+header::before {
+  content: "$ academic-terminal --start";
+
+  display: block;
+
+  margin-bottom: var(--espaco-3);
+
+  color: var(--terminal-muted);
+
+  font-size: 0.8rem;
+}
+
+header h1 {
+  margin: 0;
+
+  color: var(--terminal-green);
+
+  font-size: clamp(
+    1.25rem,
+    4vw,
+    2rem
+  );
+
+  text-shadow:
+    0 0 8px rgba(57, 255, 136, 0.5);
+}
+
+
+/* ================================
+   CONTEÚDO
+   ================================ */
+
+main {
+  width: min(
+    100% - 2rem,
+    var(--largura-maxima)
+  );
+
+  margin: 0 auto;
+
+  padding: var(--espaco-5) 0;
+}
+
+
+/* ================================
+   STATUS DA APLICAÇÃO
+   ================================ */
+
+#status-aplicacao {
+
+  margin-bottom: var(--espaco-5);
+
+  padding: var(--espaco-4);
+
+  border: 1px solid var(--terminal-border);
+
+  border-radius: var(--raio);
+
+  background-color: var(--terminal-surface);
+
+  color: var(--terminal-green);
+
+  font-weight: bold;
+}
+
+#status-aplicacao::before {
+  content: "> ";
+
+  color: var(--terminal-muted);
+}
+
+#status-aplicacao:empty {
+  display: none;
+}
+
+.estado-carregando {
+  color: var(--terminal-green);
+}
+
+.estado-sucesso {
+  color: var(--terminal-green);
+}
+
+.estado-vazio {
+  color: #ffe66d;
+}
+
+.estado-erro {
+  color: #ff7070;
+}
+
+
+/* ================================
+   SEÇÕES
+   ================================ */
+
+#secao-filtros,
+#secao-quadro {
+
+  border: 1px solid var(--terminal-border);
+
+  border-radius: var(--raio);
+
+  background-color: var(--terminal-surface);
+
+  box-shadow:
+    0 0 20px rgba(57, 255, 136, 0.04);
+
+  padding: var(--espaco-5);
+}
+
+#secao-filtros {
+  margin-bottom: var(--espaco-5);
+}
+
+#secao-filtros h2,
+#secao-quadro > h2 {
+
+  margin-top: 0;
+
+  color: var(--terminal-green);
+
+  font-size: 1.1rem;
+}
+
+#secao-filtros h2::before,
+#secao-quadro > h2::before {
+
+  content: "$ ";
+
+  color: var(--terminal-muted);
+}
+
+
+/* ================================
+   FORMULÁRIO
+   ================================ */
+
+#form-filtros {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--espaco-4);
+}
+
+#campo-busca,
+#campo-ordenacao {
+
+  width: 100%;
+
+  min-width: 0;
+
+  padding: 0.75rem;
+
+  border: 1px solid var(--terminal-border);
+
+  border-radius: var(--raio);
+
+  background-color: #020403;
+
+  color: var(--terminal-green);
+
+  outline: none;
+}
+
+#campo-busca::placeholder {
+  color: var(--terminal-muted);
+}
+
+#campo-busca:focus,
+#campo-ordenacao:focus {
+
+  border-color: var(--terminal-green);
+
+  box-shadow:
+    0 0 10px rgba(57, 255, 136, 0.2);
+}
+
+
+/* ================================
+   FILTROS
+   ================================ */
+
+.filtros {
+
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: var(--espaco-4);
+}
+
+fieldset {
+
+  min-width: 0;
+
+  margin: 0;
+
+  padding: var(--espaco-4);
+
+  border: 1px solid var(--terminal-border);
+
+  border-radius: var(--raio);
+
+  background-color: var(--terminal-surface-2);
+}
+
+legend {
+
+  padding: 0 var(--espaco-2);
+
+  color: var(--terminal-green);
+
+  font-weight: bold;
+}
+
+fieldset label {
+
+  display: block;
+
+  padding: 0.4rem 0;
+
+  color: var(--terminal-text);
+
+  cursor: pointer;
+}
+
+fieldset input {
+
+  accent-color: var(--terminal-green);
+}
+
+
+/* ================================
+   ORDENAÇÃO
+   ================================ */
+
+.ordenacao {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--espaco-2);
+}
+
+.ordenacao label {
+
+  color: var(--terminal-green);
+
+  font-weight: bold;
+}
+
+
+/* ================================
+   BOTÕES
+   ================================ */
+
+.acoes-filtros {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: var(--espaco-3);
+}
+
+button {
+
+  min-height: 44px;
+
+  padding: 0.65rem 1rem;
+
+  border: 1px solid var(--terminal-green);
+
+  border-radius: var(--raio);
+
+  background-color: transparent;
+
+  color: var(--terminal-green);
+
+  cursor: pointer;
+
+  font-weight: bold;
+}
+
+button:hover {
+
+  background-color: var(--terminal-green);
+
+  color: var(--terminal-bg);
+
+  box-shadow:
+    0 0 15px rgba(57, 255, 136, 0.3);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+
+  outline: 3px solid #ffffff;
+
+  outline-offset: 3px;
+}
+
+#botao-limpar {
+
+  border-color: var(--terminal-muted);
+
+  color: var(--terminal-muted);
+}
+
+
+/* ================================
+   QUADRO
+   ================================ */
+
+.quadro {
+
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: var(--espaco-4);
+}
+
+.quadro > section {
+
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: var(--espaco-4);
+
+  border: 1px solid var(--terminal-border);
+
+  border-radius: var(--raio);
+
+  background-color: #070d09;
+}
+
+
+/* ================================
+   TÍTULOS DAS COLUNAS
+   ================================ */
+
+.quadro h3 {
+
+  margin: 0 0 var(--espaco-4);
+
+  padding-bottom: var(--espaco-3);
+
+  border-bottom: 1px dashed var(--terminal-border);
+
+  font-size: 1rem;
+}
+
+.quadro h3::before {
+  content: "[ ";
+
+  color: var(--terminal-muted);
+}
+
+.quadro h3::after {
+  content: " ]";
+
+  color: var(--terminal-muted);
+}
+
+.quadro > section:nth-child(1) h3 {
+  color: var(--status-a-fazer);
+}
+
+.quadro > section:nth-child(2) h3 {
+  color: var(--status-andamento);
+}
+
+.quadro > section:nth-child(3) h3 {
+  color: var(--status-revisao);
+}
+
+.quadro > section:nth-child(4) h3 {
+  color: var(--status-concluida);
+}
+
+
+/* ================================
+   LISTAS
+   ================================ */
+
+.quadro ul {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--espaco-3);
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.quadro li {
+  min-width: 0;
+}
+
+
+/* ================================
+   CARTÕES
+   ================================ */
+
+.quadro article {
+
+  min-width: 0;
+
+  padding: var(--espaco-4);
+
+  border: 1px solid #174a2a;
+
+  border-left: 3px solid var(--terminal-green);
+
+  border-radius: var(--raio);
+
+  background-color: var(--terminal-surface-2);
+
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.quadro article:hover {
+
+  border-color: var(--terminal-green);
+
+  box-shadow:
+    0 0 12px rgba(57, 255, 136, 0.1);
+}
+
+
+/* ================================
+   TÍTULO DA TAREFA
+   ================================ */
+
+.quadro article h4 {
+
+  min-width: 0;
+
+  margin: 0 0 var(--espaco-3);
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color: var(--terminal-green);
+
+  font-size: 1rem;
+}
+
+.quadro article h4::before {
+
+  content: "> ";
+
+  color: var(--terminal-muted);
+}
+
+
+/* ================================
+   INFORMAÇÕES
+   ================================ */
+
+.quadro article p {
+
+  margin: var(--espaco-2) 0;
+
+  color: var(--terminal-muted);
+
+  font-size: 0.9rem;
+}
+
+.quadro article strong {
+
+  color: var(--terminal-text);
+}
+
+
+/* ================================
+   RESPONSIVIDADE
+   ================================ */
+
+/*
+  600px:
+  duas colunas passam a caber melhor sem
+  comprimir os filtros e os cartões.
+*/
+
+@media (min-width: 600px) {
+
+  .filtros {
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .quadro {
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/*
+  1000px:
+  quatro colunas passam a caber com
+  largura suficiente para os cartões.
+*/
+
+@media (min-width: 1000px) {
+
+  .quadro {
+
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+
+  .ordenacao {
+
+    max-width: 450px;
+  }
+}
