@@ -1,4 +1,4 @@
-import { carregarTarefas } from "api.js";
+import { carregarTarefas } from "./api.js";
 
 import {
   renderizarTarefas
